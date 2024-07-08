@@ -1,0 +1,17 @@
+Este documento é para apontar os movimentos que seguem no progresso do programa.
+
+ - Precisamos ter uma função que baixe as informações dos ataques; o tipo do ataque, o dano do ataque, a preci-
+são do ataque. Penso que isso é a única informação importante do ataque.
+Também é importante dizer que existem ataques que não causam dano nos pokemons mas sim mudam o estado do poke-
+mon; adormece, paralisa, confunde, sobe ataque, sobe defesa, etc.
+
+ - Poderiamos pedir ao chatgpt que crie uma lista dos ataques pokemon da primeira geração e depois podiamos
+filtrar os ataques dos pokemons que se encontram nos ataques que o pokemon consegue decorar e os que não
+se encontram na lista de ataques do chatgpt não são aderidos aos ataques que pode aprender.
+
+ - Precisamos dizer também se o movimento é com ataque espacial ou ataque físico?
+
+ - Pagina para procurar os movimentos https://pokemon.fandom.com/es/wiki/Lista_de_movimientos_por_generación
+nessa pagina temos os nomes dos movimentos, depois é aceder ao link:
+https://pokemon.fandom.com/es/wiki/<nome do ataque> e com isto poderiamos fazer um codigo que acede a os
+dados que queremos tirar deste.
