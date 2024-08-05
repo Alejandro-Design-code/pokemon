@@ -15,7 +15,6 @@ moviment_base = {
     "restore": False,
     "live-restore": 0,
     "confuse": False,
-    "infect": False,
     "auto-destruct": False,
     "damage-constant": False,
     "turn": 0,
@@ -25,18 +24,36 @@ moviment_base = {
 
 # global variables to confirm the data
 
-modify = ["poison", "paralize", "sleep", "restore", "confuse", "infect", "auto-destruct", "damage-constant"]
+modify = ["poison", "paralize", "sleep", "restore", "confuse", "auto-destruct", "damage-constant"]
 types_attack_list = ["agua", "bicho", "dragon", "electrico", "fantasma", "fuego", "hielo", "lucha", "normal", "planta",
                      "psiquico", "roca", "tierra", "veneno", "volador"]
 confirmation = ["y", "Y", "s", "S", "si", "Si", "SI", "sI"]
 reject = ["n", "N", "no", "No", "NO", "nO"]
 
-name_save = "database/pickle/attfile.pkl"
+# Tuvimos un problema al tener el programa con el .exe y el .py. Cuando tenemos el programa en .py
+# nuestro address tiene que ser:
+# 'database/pickle/att.pkl'
+# Cuando el programa es .exe tenemos que tener el siguiente address:
+# 'Documents/Python/databases/pickle/att.pkl'
+# esto es para que la carpeta de databases sea creada en la carpeta Python
 
+directory = "database/pickle/"
+name_save = "database/pickle/att.pkl"
 
 # inicio de funciones
+
+
 def pause():
     input("Press Enter para continuar\n")
+
+
+def formater(word):
+    word = str.lower(word)
+    letter = word[0]
+    letter = str.upper(letter)
+    word = letter + word[1:]
+
+    return word
 
 
 def confirm_os():
@@ -44,6 +61,9 @@ def confirm_os():
 
 
 def write_pickle(archive_name, data):  # write pickle and save in variable
+    if not os.path.exists(directory):
+        os.makedirs(directory, exist_ok=True)
+        
     with open(archive_name, 'wb') as pokefile:
         pickle.dump(data, pokefile)
 
@@ -112,11 +132,28 @@ def new_moviment():
     # lista donde vamos a guardar los datos
     changes = []
 
+    # inicializacion de variables (necesarias)
+    typee = None
+
+    # copia de formato de ataque
     new_attack = moviment_base.copy()
+
+    # recibir nombre
     name = input("Nombre ataque:\n")
-    typee = input("Tipo ataque:\n")
+    name = formater(name)
+
+    # recibir tipo del ataque
+    while typee not in types_attack_list:
+        typee = input("Tipo ataque:\n")
+    typee = formater(typee)
+
+    # recibir el daño del ataque
     damage = input("Daño del ataque:\n")
+
+    # recibir el estado del ataque
     state = input("Tiene cambios de estado?\n")
+
+    # guardaremos los cambios de estado que vamos a modificar
     while state in confirmation:
         change = input("Dime el cambio! (Comando 'help' para escribir en el terminal los cambios)\n")
         if change == 'help':
@@ -124,12 +161,14 @@ def new_moviment():
                   f"{modify}")
         if change in modify:
             changes.append(change)
+            state = input("Mas cambios?\n")
 
-        state = input("Mas cambios?\n")
-
+    # guardando datos en la copia del diccionario
     new_attack["name"] = name
     new_attack["type"] = typee
     new_attack["damage"] = damage
+
+    # modificamos los cambios de estado en la lista
     for change in changes:
         new_attack[change] = True
         if change == 'restore':

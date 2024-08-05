@@ -1,8 +1,0 @@
-Este documento é para apontar os movimentos que seguem no progresso do programa.
-
- - Acabar as funções que tratam da amostragem dos dados, existem erros no carregamento destes
- e também no guardado, simular o programa para a confirmação dos erros, saltam logo!
-
- - Criar uma função que apague os elementos da lista em específico a partir do nome
-
- - Mudar a interface para gravar nomes de ataques e etc
