@@ -1,0 +1,7 @@
+Para termos a comparação de dados entre os ataques que podemos ter e os que vem predefinidos nos pkm temos que ter um
+comparador, ou melhor dito um filtro que se encarregue de apagar os dados com que não se pode trabalhar. Esta função
+pode encontrar-se no ponto aonde fazemos a leitura e descarregamos os dados da base de dados dos pkm; sendo assim esta
+base de datos poderá apagar os ataques com que não possa trabalhar
+
+O problema é: ao termos o filtro como podemos evitar que eses dados sejam apagados sem perder o resto da informação que
+descreve o ataque

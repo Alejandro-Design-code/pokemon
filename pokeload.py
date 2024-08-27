@@ -1,4 +1,3 @@
-
 from bs4 import BeautifulSoup
 import requests
 import pickle
@@ -204,11 +203,15 @@ def get_data_one_pokemon(index):
 # esta funcion es para extrar los pokemons de la primera generacion usando en ciclo la funcion anterior
 def get_first_generation():
 
+    # variable para comprobar si fue leida la base de datos; esto afectara en gran medida el funcionamento del programa
+    lecture = False
+
     # funcion que va a llamar al resto para obtener todos los datos de los pokemons, vida, nombre, index, ataques, etc.
 
     first_generation = []
     try:
         first_generation = read_database("database/pickle/pokefile.pkl")
+        lecture = True
     except FileNotFoundError:
         index_first_generation = 151            # primera generacion hasta 151
         makedirs('database/pickle', exist_ok=True)
@@ -226,7 +229,8 @@ def get_first_generation():
 
         write_database("database/pickle/pokefile.pkl", first_generation)
 
-    test_print_pokemon(first_generation)
+    # al retornar lecture sabremos si fue leida la base de datos o no!
+    return lecture
 
 
-get_first_generation()
+#get_first_generation()
