@@ -2,6 +2,7 @@ import os
 import pickle
 import platform
 from sys import exit
+import requests
 
 # datos para la creacion del programa, como estructuras
 
@@ -39,6 +40,8 @@ reject = ["n", "N", "no", "No", "NO", "nO"]
 
 directory = "database/pickle/"
 name_save = "database/pickle/att.pkl"
+file_name = "att.pkl"
+path_github = "https://github.com/Alejandro-Design-code/pokemon/raw/main/database/pickle/att.pkl"
 
 # inicio de funciones
 
@@ -48,7 +51,10 @@ def pause():
 
 
 def git_database():
-    pass
+    with requests.get(path_github, stream=True) as data:
+        data.raise_for_status()
+        with open(name_save, 'wb') as pokefile:
+            pokefile.write(data.content)
 
 
 def formater(word):
