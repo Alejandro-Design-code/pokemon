@@ -15,12 +15,16 @@ def main():
                          "programa "
                          "reactive la que ya tenia?\n")
         if response in confirmation:
-            # tenemos que tener la funcion que tenga en si almacenada nuestra propia base de datos! Con esto tendriamos
-            # siempre un respaldo para el usuario poder usar siempre nuestra base de datos;
-            # otra opcion es que se encargue el solo de descargar la base de datos de la web!
+            # siempre un respaldo para el usuario poder usar siempre nuestra base de datos ya creada, esta se encuentra
+            # en el repositorio respaldo que tengo de github
             movload.git_database()
+        else:
+            # el usuario crea su propio database!
+            while True:
+                exiting = movload.menu()
+                if exiting:
+                    break
 
-        movload.menu()
     if not old_database:
         compationAttack.compare()
 

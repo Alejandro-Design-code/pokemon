@@ -312,7 +312,8 @@ def menu():
                              "3. Agregar nuevo movimiento\n"
                              "4. Editar movimiento\n"
                              "5. Eliminar toda la base de datos\n"
-                             "6. Cerrar programa\n"))
+                             "6. Cerrar el creador de database\n"
+                             "7. Cerrar programa\n"))
 
         # corresponde a un switch del lenguaje C y C++, con este podremos acceder a cada caso que nos sea identificado
         # en la variable response; cada número a la izquierda de la opcion en el menu corresponde a cada una de las op-
@@ -335,6 +336,8 @@ def menu():
                 delete_all_database()
             # Cerrar programa
             case 6:
+                break
+            case 7:
                 print("close program!\n")
                 exit()
             # este toma en cuenta cualquier otra opcion que sea introducida por el usuario
@@ -343,7 +346,7 @@ def menu():
 
         pause()
 
+    return True
+
 # recordar comentar el menu() porque sino no se puede testear en otras funciones
-
-
 #menu()
