@@ -69,7 +69,11 @@ def receive_attack_movload():
 
 # funcion de testeo
 def compare():
+    # en resumen: se encarga de extraer todos los nombres de los ataques que se encuentran en la base de datos de
+    # ataques, esto tendrá un uso en la funcion a seguir
     list_of_names = receive_attack_movload()
+    # se encarga de eliminar en la lista de pokemons los ataques que no se encuentran en la lista de ataques. Estas
+    # funciones ya sobreescriben en las bases de datos para poder ser accedidos en otras bibliotecas
     receive_attack_pokeload(list_of_names)
 
 

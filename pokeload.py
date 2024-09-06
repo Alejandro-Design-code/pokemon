@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import pickle
 from os import system, makedirs
+from random import randint
 
 
 # variables de acceso a internet
@@ -12,6 +13,8 @@ URL_MOVIMENTS = "https://www.pokexperto.net/index2.php?seccion=nds/nationaldex/m
 
 # varible de numero de evoluciones por pokemon
 GLOBAL_NUMBER_EVOLUTIONS = -1
+
+first_generation = []
 
 # diccionario de los pokemon
 pokemon_base = {
@@ -200,6 +203,17 @@ def get_data_one_pokemon(index):
         return None
 
 
+# esta funcion se encarga de conseguir un pokemon de manera aleatoria para poder usarlo en los combates y como
+# primer pokemon
+def give_pokemon():
+
+    global first_generation
+    # indice para conseguir un pokemon
+    index = randint(0, len(first_generation)-1)
+    pokemon = first_generation[index]
+    return pokemon
+
+
 # esta funcion es para extrar los pokemons de la primera generacion usando en ciclo la funcion anterior
 def get_first_generation():
 
@@ -207,8 +221,7 @@ def get_first_generation():
     lecture = False
 
     # funcion que va a llamar al resto para obtener todos los datos de los pokemons, vida, nombre, index, ataques, etc.
-
-    first_generation = []
+    global first_generation
     try:
         first_generation = read_database("database/pickle/pokefile.pkl")
         lecture = True
@@ -231,6 +244,3 @@ def get_first_generation():
 
     # al retornar lecture sabremos si fue leida la base de datos o no!
     return lecture
-
-
-#get_first_generation()
